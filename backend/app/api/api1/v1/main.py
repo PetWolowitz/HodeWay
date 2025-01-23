@@ -1,15 +1,23 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from services.database import get_db
-from config.settings import settings
+from sqlalchemy import text
+from app.database import get_db
 
 router = APIRouter()
 
 @router.get("/health-check")
-def health_check(db: Session = Depends(get_db)):
+def check_database(db: Session = Depends(get_db)):
     try:
-        # Esegue una query semplice per verificare la connessione al database
-        db.execute("SELECT 1")
-        return {"status": "healthy", "database": "connected"}
+        result = db.execute(text("SELECT version()"))
+        version = result.scalar()
+        return {
+            "status": "connected",
+            "database": "hodeway",
+            "version": version
+        }
     except Exception as e:
-        return {"status": "unhealthy", "database": str(e)}
+        return {
+            "status": "error",
+            "detail": str(e),
+            "type": str(type(e))
+        }

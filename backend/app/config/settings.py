@@ -6,6 +6,9 @@ class Settings(BaseSettings):
     Application settings.
     Loads environment variables with type checking using Pydantic.
     """
+    #Project name
+    PROJECT_NAME: str = "HodeWay"
+
     # Database settings 
     DATABASE_URL: str
 
@@ -19,7 +22,7 @@ class Settings(BaseSettings):
 
     class Config:
         env_file = ".env"
-        env_file_encoding = "utf-8"
+        
 
 @lru_cache()
 def get_settings() -> Settings:
