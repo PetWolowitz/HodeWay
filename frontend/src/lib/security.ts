@@ -15,6 +15,7 @@ export async function hashPassword(password: string): Promise<string> {
   try {
     return await bcrypt.hash(password, SALT_ROUNDS);
   } catch (error) {
+    console.error('Error hashing password:', error); // Debug log
     throw new SecurityError('Error hashing password');
   }
 }
@@ -23,6 +24,7 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
   try {
     return await bcrypt.compare(password, hash);
   } catch (error) {
+    console.error('Error verifying password:', error); // Debug log
     throw new SecurityError('Error verifying password');
   }
 }
@@ -58,7 +60,10 @@ export function checkRateLimit(identifier: string): boolean {
   return true;
 }
 
-// Clear rate limiting data for testing purposes
+export function resetRateLimit(identifier: string): void {
+  attempts.delete(identifier);
+}
+
 export function clearRateLimit(identifier: string): void {
   attempts.delete(identifier);
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Map, Settings } from 'lucide-react';
 import { useAuthStore } from '../store/auth';
-import { getItineraries } from '../lib/db';
+
 import type { Itinerary, Expense, Transport } from '../types';
 import { Button } from '../components/ui/button';
 import { ItineraryCard } from '../components/ItineraryCard';
@@ -37,11 +37,11 @@ export function Home() {
 
   useBudgetNotifications(expenses, budget);
 
-  useEffect(() => {
-    if (user) {
-      getItineraries(user.id).then(setItineraries);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     getItineraries(user.id).then(setItineraries);
+  //   }
+  // }, [user]);
 
   const handleCreateItinerary = (data: any) => {
     setShowForm(false);

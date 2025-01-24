@@ -1,4 +1,4 @@
-import sgMail from '@sendgrid/mail';
+import sgMail from "@sendgrid/mail";
 
 // Initialize SendGrid only if API key is available
 const SENDGRID_API_KEY = import.meta.env.VITE_SENDGRID_API_KEY;
