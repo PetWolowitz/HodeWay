@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
@@ -8,17 +9,16 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      // Usa una versione compatibile con il browser per il modulo "crypto"
+      "@": path.resolve(__dirname, "./src"), // Alias per importare file con "@/..."
       crypto: 'crypto-browserify',
     },
   },
   optimizeDeps: {
-    // Includi i pacchetti pdfmake per evitare problemi di compatibilità
     include: ['pdfmake/build/pdfmake', 'pdfmake/build/vfs_fonts'],
   },
   server: {
     fs: {
-      strict: false, // Consente l'accesso ai file esterni, se necessario
+      strict: false,
     },
   },
 });
