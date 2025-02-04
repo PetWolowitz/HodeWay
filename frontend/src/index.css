@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Passero+One&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Passero+One&display=swap');
+
 
 
 @layer base {
@@ -95,4 +97,15 @@
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Passero One', cursive;
+}
+
+@font-face {
+  font-family: 'Refuse';
+  src: url('/fonts/Fifties_Movies.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*:not(p):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+  font-family: 'Refuse', sans-serif;
 }

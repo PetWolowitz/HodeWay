@@ -1,7 +1,7 @@
 import React from 'react';
 import { Bell, Mail, Share2, Clock } from 'lucide-react';
-import { useNotificationStore, requestPushNotificationPermission } from '../lib/notifications';
-import { Button } from './ui/button';
+import { useNotificationStore, requestPushNotificationPermission } from "../../../lib/notifications";
+import { Button } from '../button';
 
 export function NotificationSettings() {
   const { preferences, updatePreferences } = useNotificationStore();

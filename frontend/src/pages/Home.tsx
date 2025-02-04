@@ -3,16 +3,16 @@ import { Plus, Map, Settings } from 'lucide-react';
 import { useAuthStore } from '../store/auth';
 
 import type { Itinerary, Expense, Transport } from '../types';
-import { Button } from '../components/ui/button';
-import { ItineraryCard } from '../components/ItineraryCard';
-import { ItineraryForm } from '../components/ItineraryForm';
-import { ExpenseForm } from '../components/ExpenseForm';
-import { ExpensesList } from '../components/ExpensesList';
-import { BudgetDashboard } from '../components/BudgetDashboard';
-import { NotificationToast } from '../components/NotificationToast';
-import { NotificationSettings } from '../components/NotificationSettings';
-import { TransportList } from '../components/TransportList';
-import { TransportForm } from '../components/TransportForm';
+import { Button } from '../components/common/button';
+import { ItineraryCard } from "../components/features/trips/ItineraryCard";
+import { ItineraryForm } from '../components/features/trips/ItineraryForm';
+import { ExpenseForm } from "../components/features/budget/ExpenseForm";
+import { ExpensesList } from "../components/features/budget/ExpensesList";
+import { BudgetDashboard } from "../components/features/budget/BudgetDashboard";
+import { NotificationToast } from "../components/common/notifications/NotificationToast";
+import { NotificationSettings } from '../components/common/notifications/NotificationSettings';
+import { TransportList } from '../components/features/transport/TransportList';
+import { TransportForm } from '../components/features/transport/TransportForm';
 import { useCurrencyStore } from '../lib/currency';
 import { useBudgetNotifications } from '../hooks/useBudgetNotifications';
 import { useNotificationStore } from '../lib/notifications';
@@ -156,7 +156,7 @@ export function Home() {
             <div className="space-x-4">
               <Button
                 onClick={() => setShowExpenseForm(true)}
-                variant="outline"
+               
                 className="flex items-center gap-2"
               >
                 <Plus className="w-5 h-5" />

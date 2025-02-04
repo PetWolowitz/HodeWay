@@ -3,8 +3,8 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { GripVertical, MapPin, Calendar, Image, Edit, Trash } from 'lucide-react';
 import { format } from 'date-fns';
-import type { Destination } from '../types';
-import { Button } from './ui/button';
+import type { Destination } from '@/types';
+import { Button } from '../../common/button';
 
 interface SortableDestinationProps {
   destination: Destination;
@@ -31,6 +31,13 @@ export function SortableDestination({
     transition,
   };
 
+  // Funzione per formattare la data solo se è valida
+  const formatDate = (dateString: string | undefined): string => {
+    if (!dateString) return 'Data non disponibile';
+    const date = new Date(dateString);
+    return isNaN(date.getTime()) ? 'Data non valida' : format(date, 'MMM d');
+  };
+
   return (
     <div
       ref={setNodeRef}
@@ -47,7 +54,6 @@ export function SortableDestination({
         >
           <GripVertical className="h-5 w-5 text-gray-400" />
         </div>
-
         <div className="flex-1">
           <div className="flex items-start justify-between">
             <div>
@@ -80,17 +86,15 @@ export function SortableDestination({
               </Button>
             </div>
           </div>
-
           <div className="mt-2 flex items-center gap-4 text-sm text-gray-500">
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
               <span>
-                {format(new Date(destination.start_date), 'MMM d')} -{' '}
-                {format(new Date(destination.end_date), 'MMM d, yyyy')}
+                {formatDate(destination.start_date)} -{' '}
+                {formatDate(destination.end_date)}
               </span>
             </div>
           </div>
-
           {destination.images && destination.images.length > 0 && (
             <div className="mt-4">
               <div className="flex -space-x-2 overflow-hidden">

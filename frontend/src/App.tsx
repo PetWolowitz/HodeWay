@@ -1,10 +1,10 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Navigation } from './components/Navigation';
+import { Navigation } from './components/layout/navigation/Navigation';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Auth } from './pages/Auth';
-import { ProtectedRoute } from './components/ProtectedRoute';
+import { ProtectedRoute } from './components/common/ProtectedRoute';
 
 const routes = [
   {

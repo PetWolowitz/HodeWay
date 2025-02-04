@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Share2, Link as LinkIcon, Facebook, Twitter } from 'lucide-react';
-import { Button } from './ui/button';
+import { Button } from '../../common/button';
 
 interface ShareButtonProps {
   title: string;
@@ -37,7 +37,7 @@ export function ShareButton({ title, description, url }: ShareButtonProps) {
   return (
     <div className="relative">
       <Button
-        variant="outline"
+        
         size="sm"
         className="flex items-center gap-2"
         onClick={() => setShowMenu(!showMenu)}

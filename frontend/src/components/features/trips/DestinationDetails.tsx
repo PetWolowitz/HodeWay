@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { MapPin, Navigation, Clock } from 'lucide-react';
-import type { Destination } from '../types';
-import { calculateDistance, searchNearbyPlaces } from '../lib/maps';
-import { Button } from './ui/button';
+import type { Destination } from '@/types';
+import { calculateDistance, searchNearbyPlaces } from '../../lib/maps';
+import { Button } from '../../common/button';
 
 interface DestinationDetailsProps {
   destination: Destination;

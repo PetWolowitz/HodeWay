@@ -11,7 +11,7 @@ import {
   Pie,
   Cell
 } from 'recharts';
-import type { Expense } from '../types';
+import type { Expense } from '@/types';
 
 interface ExpenseChartProps {
   expenses: Expense[];

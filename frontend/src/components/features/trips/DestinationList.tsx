@@ -15,7 +15,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { SortableDestination } from './SortableDestination';
-import type { Destination } from '../types';
+import type { Destination } from '@/types';
 
 interface DestinationListProps {
   destinations: Destination[];

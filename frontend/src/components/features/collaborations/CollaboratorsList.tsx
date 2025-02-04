@@ -1,6 +1,6 @@
 import React from 'react';
 import { User, UserMinus } from 'lucide-react';
-import { Button } from './ui/button';
+import { Button } from '../../common/button';
 
 interface Collaborator {
   id: string;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MapPin, Calendar, Image as ImageIcon, X } from 'lucide-react';
-import type { Destination } from '../types';
-import { Button } from './ui/button';
+import type { Destination } from '@/types';
+import { Button } from '../../common/button';
 import { LocationPicker } from './LocationPicker';
 
 interface DestinationFormProps {
@@ -110,7 +110,7 @@ export function DestinationForm({
           <Button
             type="button"
             onClick={addImage}
-            variant="outline"
+            
             className="flex items-center gap-2"
           >
             <ImageIcon className="h-4 w-4" />
@@ -141,7 +141,7 @@ export function DestinationForm({
       </div>
 
       <div className="flex justify-end gap-4">
-        <Button type="button" variant="outline" onClick={onCancel}>
+        <Button type="button"  onClick={onCancel}>
           Cancel
         </Button>
         <Button onClick={handleSubmit}>

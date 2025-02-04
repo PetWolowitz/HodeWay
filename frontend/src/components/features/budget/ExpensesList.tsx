@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { DollarSign, Calendar, Tag, Download, Search, ArrowUpDown } from 'lucide-react';
-import type { Expense, ExpenseCategory } from '../types';
+import type { Expense, ExpenseCategory } from '@/types';
 import { format } from 'date-fns';
-import { Button } from './ui/button';
+import { Button } from '../../common/button';
 
 interface ExpensesListProps {
   expenses: Expense[];
@@ -128,7 +128,7 @@ export function ExpensesList({ expenses, onEdit }: ExpensesListProps) {
 
           <Button
             onClick={exportToCSV}
-            variant="outline"
+          
             className="flex items-center gap-2"
           >
             <Download className="h-4 w-4" />

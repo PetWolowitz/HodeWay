@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Info, User, LogOut } from 'lucide-react';
-import { useAuthStore } from '../store/auth';
+import { useAuthStore } from '@/store/auth';
 import {
   NavigationMenu,
   NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuLink,
-} from './ui/navigation-menu';
-import { Button } from './ui/button';
+  NavigationMenuItem
+} from "../../common/navigation-menu"; // risaliamo solo di due livelli invece di tre
+import { Button } from "../../common/button";
 
 export function Navigation() {
   const location = useLocation();

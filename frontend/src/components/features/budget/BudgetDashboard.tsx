@@ -1,6 +1,6 @@
 import React from 'react';
 import { Wallet, TrendingUp, ArrowUpRight, ArrowDownRight } from 'lucide-react';
-import type { Expense } from '../types';
+import type { Expense } from '@/types';
 import { ExpenseChart } from './ExpenseChart';
 
 interface BudgetDashboardProps {

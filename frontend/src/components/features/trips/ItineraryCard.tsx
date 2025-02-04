@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Calendar, MapPin, FileText, Share2, Download } from 'lucide-react';
-import type { Itinerary } from '../types';
+import type { Itinerary } from '../../../types';
 import { format } from 'date-fns';
-import { Button } from './ui/button';
-import { ShareModal } from './ShareModal';
-import { generateItineraryPDF } from '../lib/pdf';
+import { Button } from '../../common/button';
+import { ShareModal } from "../../common/ShareModal";
+
+import { generateItineraryPDF } from '../../../lib/pdf';
 
 interface ItineraryCardProps {
   itinerary: Itinerary;

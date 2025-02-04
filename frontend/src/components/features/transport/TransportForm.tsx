@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Plane, Train, Bus, Ship } from 'lucide-react';
-import { Button } from './ui/button';
-import type { Transport, TransportType } from '../types';
-import { transportSchema } from '../types';
+import { Button } from '../../common/button';
+import type { Transport, TransportType } from '../../../types';
+import { transportSchema } from "../../../types";
 
 interface TransportFormProps {
   transport?: Transport;
@@ -267,7 +267,7 @@ export function TransportForm({ transport, onSubmit, onCancel }: TransportFormPr
       )}
 
       <div className="flex justify-end gap-4">
-        <Button type="button" variant="outline" onClick={onCancel}>
+        <Button type="button" onClick={onCancel}>
           Cancel
         </Button>
         <Button type="submit">

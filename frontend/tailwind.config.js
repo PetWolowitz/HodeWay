@@ -11,8 +11,9 @@ export default {
 			}
 		},
 		extend:{
-		     fontfamily: {
+			fontfamily: {
 				passero: ['Passero One', 'cursive'],
+				refuse: ['Refuse', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

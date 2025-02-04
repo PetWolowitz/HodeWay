@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Button } from './ui/button';
+import { Button } from '../../common/button';
 import { DollarSign } from 'lucide-react';
-import type { ExpenseCategory } from '../types';
+import type { ExpenseCategory } from '@/types';
+
 
 interface ExpenseFormProps {
   onSubmit: (data: {
@@ -119,7 +120,7 @@ export function ExpenseForm({ onSubmit, onCancel }: ExpenseFormProps) {
       </div>
 
       <div className="flex justify-end space-x-3">
-        <Button type="button" variant="outline" onClick={onCancel}>
+        <Button type="button"  onClick={onCancel}>
           Cancel
         </Button>
         <Button type="submit">

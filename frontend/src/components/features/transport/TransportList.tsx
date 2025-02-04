@@ -1,8 +1,8 @@
 import React from 'react';
 import { format } from 'date-fns';
 import { Plane, Train, Bus, Ship, Clock, MapPin, Edit, Trash } from 'lucide-react';
-import type { Transport } from '../types';
-import { Button } from './ui/button';
+import type { Transport } from '../../../types';
+import { Button } from '../../common/button';
 
 interface TransportListProps {
   transports: Transport[];

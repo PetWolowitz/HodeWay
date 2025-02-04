@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Button } from './ui/button';
+import { Button } from '../../common/button';
 import { Plus } from 'lucide-react';
-import type { Destination } from '../types';
+import type { Destination } from '../../../types';
 import { DestinationList } from './DestinationList';
 import { DestinationForm } from './DestinationForm';
 

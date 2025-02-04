@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { motion } from "framer-motion";
-import { Button } from "../components/ui/button";
+import { Button } from '../components/common/button';
 
 export function Auth() {
   const [isLogin, setIsLogin] = useState(true);
@@ -78,7 +78,7 @@ export function Auth() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-xl md:text-3xl font-semibold text-gray-800 text-center"
+            className="text-xl md:text-4xl font-semibold text-gray-800 text-center"
           >
             {isLogin ? "Login" : "Create Account"}
           </motion.h2>
@@ -110,7 +110,7 @@ export function Auth() {
               <label className="block text-xs md:text-sm font-medium text-gray-700">E-mail *</label>
               <input
                 type="email"
-                className="w-full p-2 md:p-3 mt-1 border rounded-lg bg-gray-100 outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full p-2 md:p-3 mt-1 border font-sans rounded-lg bg-gray-100 outline-none focus:ring-2 focus:ring-red-400"
                 placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -124,7 +124,7 @@ export function Auth() {
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
-                  className="w-full p-2 md:p-3 mt-1 border rounded-lg bg-gray-100 outline-none focus:ring-2 focus:ring-blue-400 pr-10"
+                  className="w-full p-2 md:p-3 mt-1 border rounded-lg font-sans bg-gray-100 outline-none focus:ring-2 focus:ring-red-400 pr-10"
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -147,7 +147,7 @@ export function Auth() {
           {/* Switch tra Login e Registrazione */}
           <p className="text-center text-xs md:text-sm text-gray-700 mt-4 md:mt-6">
             {isLogin ? "Non hai un account?" : "Hai già un account?"}{" "}
-            <button onClick={() => setIsLogin(!isLogin)} className="text-black/80 font-semibold hover:underline">
+            <button onClick={() => setIsLogin(!isLogin)} className="text-black/70 font-semibold ">
               {isLogin ? "Crea un nuovo account" : "Sign in"}
             </button>
           </p>

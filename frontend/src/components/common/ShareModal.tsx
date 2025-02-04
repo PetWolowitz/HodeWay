@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { X, Mail, Link as LinkIcon, Download, Share2 } from 'lucide-react';
-import { Button } from './ui/button';
-import { CollaboratorsList } from './CollaboratorsList';
-import type { Itinerary } from '../types';
+import { Button } from '../common/button';
+import { CollaboratorsList } from "../features/collaborations/CollaboratorsList";
+import type { Itinerary } from '../../types';
 
 interface ShareModalProps {
   itinerary: Itinerary;
@@ -65,7 +65,7 @@ export function ShareModal({
           {/* Quick Share Options */}
           <div className="grid grid-cols-2 gap-4 mb-6">
             <Button
-              variant="outline"
+             
               className="flex items-center justify-center gap-2"
               onClick={copyLink}
             >
@@ -73,7 +73,7 @@ export function ShareModal({
               {copied ? 'Copied!' : 'Copy Link'}
             </Button>
             <Button
-              variant="outline"
+
               className="flex items-center justify-center gap-2"
               onClick={generatePDF}
             >
