@@ -1,44 +1,61 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Home, Info, User, LogOut } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Home, Info, Map, LogOut } from 'lucide-react';
 import { useAuthStore } from '@/store/auth';
 import {
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuItem
-} from "../../common/navigation-menu"; // risaliamo solo di due livelli invece di tre
-import { Button } from "../../common/button";
+} from "@/components/common/navigation-menu";
+import { Button } from "@/components/common/button";
 
 export function Navigation() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { user, signOut } = useAuthStore();
-  
+
   const isActive = (path: string) => location.pathname === path;
-  
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/auth');
+  };
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-[linear-gradient(to_top,#fef3c7,#fdd888,#c47f3d)]">
       <div className="container flex h-14 items-center">
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
               <Link to="/">
                 <Button
-                  variant={isActive('/') ? 'default' : 'ghost'}
+                  variant={isActive('/') ? 'default' : 'brutal'}
                   className="flex items-center gap-2"
                 >
-                  <Home className="w-4 h-4" />
-                  <span>Home</span>
+                  <img src="/images/logoHome.svg" alt="LogoHome" className='w-5 h-5 mr-2' />
+                  <span className='text-sm md:text-lg'>Home</span>
+                </Button>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link to="/trips">
+                <Button
+                  variant={isActive('/trips') ? 'default' : 'brutal'}
+                  className="flex items-center gap-2"
+                >
+                  <img src="/images/trips.svg" alt="logoMappa"  className='w-7 h-7 mr-2'/>
+                  <span className='text-sm md:text-lg'>My Trips</span>
                 </Button>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link to="/about">
                 <Button
-                  variant={isActive('/about') ? 'default' : 'ghost'}
-                  className="flex items-center gap-2"
+                  variant={isActive('/about') ? 'default' : 'brutal'}
+                  className="flex items-center"
                 >
-                  <Info className="w-4 h-4" />
-                  <span>About</span>
+                  <img src="/images/aboutUs.svg" alt="" className='w-7 h-7 mr-3' />
+                  <span className='text-sm md:text-lg'>About</span>
                 </Button>
               </Link>
             </NavigationMenuItem>
@@ -48,33 +65,18 @@ export function Navigation() {
         <div className="flex-1" />
 
         <div className="flex items-center gap-4">
-          {user ? (
-            <>
-              <span className="text-sm text-muted-foreground">
-                Welcome, {user.full_name || user.email}
-              </span>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="flex items-center gap-2"
-                onClick={() => signOut()}
-              >
-                <LogOut className="w-4 h-4" />
-                <span>Sign out</span>
-              </Button>
-            </>
-          ) : (
-            <Link to="/auth">
-              <Button
-                variant={isActive('/auth') ? 'default' : 'ghost'}
-                size="sm"
-                className="flex items-center gap-2"
-              >
-                <User className="w-4 h-4" />
-                <span>Sign in</span>
-              </Button>
-            </Link>
-          )}
+          <span className="text-sm text-muted-foreground">
+            {user?.full_name || user?.email}
+          </span>
+          <Button
+            variant="brutal"
+            size="sm"
+            className="flex items-center gap-2"
+            onClick={handleSignOut}
+          >
+            <img src="/images/logout.svg" alt="logoLogout" className='w-7 h-7 ' />
+            <span className='text-sm md:text-lg'>Sign out</span>
+          </Button>
         </div>
       </div>
     </header>

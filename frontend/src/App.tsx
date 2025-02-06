@@ -4,6 +4,7 @@ import { Navigation } from './components/layout/navigation/Navigation';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Auth } from './pages/Auth';
+import { Trips } from './pages/Trips';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
 
 const routes = [
@@ -15,6 +16,19 @@ const routes = [
         <main>
           <ProtectedRoute>
             <Home />
+          </ProtectedRoute>
+        </main>
+      </div>
+    )
+  },
+  {
+    path: "/trips",
+    element: (
+      <div className="min-h-screen bg-gray-100">
+        <Navigation />
+        <main>
+          <ProtectedRoute>
+            <Trips />
           </ProtectedRoute>
         </main>
       </div>

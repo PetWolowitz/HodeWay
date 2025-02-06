@@ -1,9 +1,9 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from '../components/common/button';
+import { useAuthStore } from '../store/auth';
 
 export function Auth() {
   const [isLogin, setIsLogin] = useState(true);
@@ -15,6 +15,7 @@ export function Auth() {
   const [randomVideo, setRandomVideo] = useState("");
 
   const navigate = useNavigate();
+  const { signIn, signUp, error } = useAuthStore();
 
   // Array di video disponibili
   const videos = [
@@ -38,15 +39,19 @@ export function Auth() {
     setRandomVideo(videos[randomIndex]);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(isLogin ? "Login submitted" : "Account created", {
-      email,
-      password,
-      fullName: isLogin ? undefined : fullName,
-      rememberMe,
-    });
-    navigate("/"); // ✅ Ora punta alla root "/"
+
+    try {
+      if (isLogin) {
+        await signIn({ email, password });
+      } else {
+        await signUp({ email, password, fullName });
+      }
+      navigate("/");
+    } catch (error) {
+      console.error("Authentication failed:", error);
+    }
   };
 
   return (
@@ -69,7 +74,6 @@ export function Auth() {
       >
         {/* Sezione Form */}
         <div className="w-full md:w-1/2 p-6 md:p-8 bg-[linear-gradient(to_top,#fef3c7,#fdd888,#c47f3d)] relative max-w-sm mx-auto md:max-w-full">
-
 
           {/* Logo in alto a destra */}
           <img src="/images/logo200.png" alt="Logo" className="absolute top-3 left-4 md:top-3 md:left-4 h-10 md:h-14 rounded-md shadow-md" />
@@ -146,7 +150,7 @@ export function Auth() {
 
           {/* Switch tra Login e Registrazione */}
           <p className="text-center text-xs md:text-sm text-gray-700 mt-4 md:mt-6">
-            {isLogin ? "Non hai un account?" : "Hai già un account?"}{" "}
+            {isLogin ? "Non hai un account?" : "Hai già un account?"}{" "}
             <button onClick={() => setIsLogin(!isLogin)} className="text-black/70 font-semibold ">
               {isLogin ? "Crea un nuovo account" : "Sign in"}
             </button>

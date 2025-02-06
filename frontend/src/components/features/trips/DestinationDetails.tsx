@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { MapPin, Navigation, Clock } from 'lucide-react';
-import type { Destination } from '@/types';
-import { calculateDistance, searchNearbyPlaces } from '../../lib/maps';
+import type { Destination, DistanceInfo  } from '@/types';
+import { calculateDistance, searchNearbyPlaces } from '@/lib/maps';
 import { Button } from '../../common/button';
 
 interface DestinationDetailsProps {
-  destination: Destination;
-  previousDestination?: Destination;
+  destination: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
+  previousDestination?: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
 }
 
 interface PlaceSuggestion {
@@ -17,7 +27,7 @@ interface PlaceSuggestion {
 }
 
 export function DestinationDetails({ destination, previousDestination }: DestinationDetailsProps) {
-  const [distance, setDistance] = useState<{ distance: string; duration: string } | null>(null);
+  const [distance, setDistance] = useState<DistanceInfo | null>(null);
   const [suggestions, setSuggestions] = useState<PlaceSuggestion[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -25,13 +35,11 @@ export function DestinationDetails({ destination, previousDestination }: Destina
     async function loadData() {
       setLoading(true);
       try {
-        // Get nearby attractions
-        const places = await searchNearbyPlaces(destination.location);
-        setSuggestions(places);
+        const placesResults = await searchNearbyPlaces(destination.location);
+        setSuggestions(placesResults); // Ora dovrebbe essere type-safe
 
-        // Calculate distance from previous destination if it exists
         if (previousDestination) {
-          const distanceInfo = await calculateDistance(previousDestination, destination);
+          const distanceInfo = calculateDistance(previousDestination, destination);
           setDistance(distanceInfo);
         }
       } catch (error) {
@@ -95,11 +103,10 @@ export function DestinationDetails({ destination, previousDestination }: Destina
                         {[...Array(5)].map((_, i) => (
                           <span
                             key={i}
-                            className={`text-sm ${
-                              i < Math.round(place.rating)
+                            className={`text-sm ${i < Math.round(place.rating || 0)
                                 ? 'text-yellow-400'
                                 : 'text-gray-300'
-                            }`}
+                              }`}
                           >
                             ★
                           </span>

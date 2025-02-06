@@ -95,3 +95,47 @@ export const transportSchema = z.object({
   seats: z.array(z.string()).optional(),
   notes: z.string().optional()
 });
+// Aggiungiamo le interfacce per i Places
+export interface PlaceSuggestion {
+  id: string;
+  name: string;
+  rating?: number;
+  vicinity?: string;
+  location?: {
+    lat: number;
+    lng: number;
+  };
+  types?: string[];
+  // Modifichiamo il tipo delle photos per corrispondere a quello di Google Places
+  photos?: { getUrl: () => string }[];
+}
+
+// Schema per la validazione delle coordinate
+export const locationSchema = z.object({
+  lat: z.number(),
+  lng: z.number()
+});
+
+// Schema per la validazione dei Places
+export const placeSuggestionSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  rating: z.number().optional(),
+  vicinity: z.string().optional(),
+  location: locationSchema.optional(),
+  types: z.array(z.string()).optional(),
+  photos: z.array(z.string()).optional()
+});
+
+// Schema per la risposta di distanza
+export interface DistanceInfo {
+  distance: string;   // es: "5.2 km"
+  duration: string;   // es: "10 min"
+}
+
+// Altri tipi utili per Google Maps
+export interface MapLocation {
+  lat: number;
+  lng: number;
+  address?: string;
+}
