@@ -12,7 +12,7 @@ export default {
 		},
 		extend:{
 			fontfamily: {
-				passero: ['Passero One', 'cursive'],
+				passerone: ['Passero One', 'cursive'],
 				refuse: ['Refuse', 'sans-serif'],
 			},
 			colors: {

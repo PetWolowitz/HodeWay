@@ -22,7 +22,7 @@ export function Navigation() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-[linear-gradient(to_top,#fef3c7,#fdd888,#c47f3d)]">
+    <header className="sticky top-0 z-50 w-full h-full border-b bg-[linear-gradient(to_top,#fef3c7,#fdd888,#c47f3d)] shadow-lg">
       <div className="container flex h-14 items-center">
         <NavigationMenu>
           <NavigationMenuList>
@@ -30,7 +30,7 @@ export function Navigation() {
               <Link to="/">
                 <Button
                   variant={isActive('/') ? 'default' : 'brutal'}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 "
                 >
                   <img src="/images/logoHome.svg" alt="LogoHome" className='w-5 h-5 mr-2' />
                   <span className='text-sm md:text-lg'>Home</span>
