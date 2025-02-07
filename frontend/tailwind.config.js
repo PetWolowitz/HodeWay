@@ -14,6 +14,8 @@ export default {
 			fontfamily: {
 				passerone: ['Passero One', 'cursive'],
 				refuse: ['Refuse', 'sans-serif'],
+				fiftiesmovies: ['Fifties Movies', 'sans-serif'],
+				antiquebookcover: ['Antique Book Cover', 'sans-serif']
 			},
 			colors: {
 				border: 'hsl(var(--border))',

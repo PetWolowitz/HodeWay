@@ -22,7 +22,7 @@ export function Navigation() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full h-full border-b bg-[linear-gradient(to_top,#fef3c7,#fdd888,#c47f3d)] shadow-lg">
+    <header className="sticky top-0 z-50 w-full h-full border-b bg-[linear-gradient(to_top_left,#fef3c7,#c47f3d)] shadow-lg">
       <div className="container flex h-14 items-center">
         <NavigationMenu>
           <NavigationMenuList>

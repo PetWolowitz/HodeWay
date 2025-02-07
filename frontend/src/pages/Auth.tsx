@@ -38,6 +38,16 @@ export function Auth() {
     setRandomVideo(videos[randomIndex]);
   }, []);
 
+  useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage(null);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
@@ -73,7 +83,7 @@ export function Auth() {
         className="relative w-full max-w-4xl md:flex bg-white/10 backdrop-blur-md shadow-lg rounded-lg overflow-hidden"
       >
         <div className="w-full md:w-1/2 p-6 md:p-8 bg-[linear-gradient(to_top,#fef3c7,#fdd888,#c47f3d)] relative max-w-sm mx-auto md:max-w-full">
-          <img src="/images/logo200.png" alt="Logo" className="absolute top-3 left-4 md:top-3 md:left-4 h-10 md:h-14 rounded-md shadow-md" />
+          <img src="/images/logo200.png" alt="Logo" className="absolute top-3 left-4 md:top-3 md:left-4 h-10 md:h-14 rounded-sm shadow-md" />
 
           <motion.h2
             initial={{ opacity: 0, y: -20 }}
@@ -152,16 +162,28 @@ export function Auth() {
             </motion.div>
           </motion.form>
 
-          <p className="text-center text-xs md:text-sm text-gray-700 mt-4 md:mt-6">
+          <p className="text-center text-xs md:text-sm text-gray-700 mt-4 md:mt-6 ">
             {isLogin ? "Non hai un account?" : "Hai già un account?"}{" "}
-            <button onClick={() => setIsLogin(!isLogin)} className="text-black/70 font-semibold">
+            <button
+              onClick={() => {
+                setIsLogin(!isLogin);
+                setErrorMessage(null);
+              }}
+              className="text-black/70 font-semibold text-sm md:text-lg hover:text-black/90 transition pr-2 "
+            >
               {isLogin ? "Crea un nuovo account" : "Sign in"}
             </button>
           </p>
         </div>
 
-        <div className="w-1/2 hidden md:block">
-          <img src="/images/logo-original-1000.png" alt="logo" className="w-full h-full object-cover" />
+        <div className="w-1/2 hidden md:block bg-white/10 backdrop-blur-md  rounded-r-xl overflow-hidden p-4 ">
+          <div className="h-full flex items-center justify-center" style={{ minHeight: '500px' }}>
+            <img
+              src="/images/logo-original-1000.png"
+              alt="logo"
+              className="max-w-full max-h-full object-contain rounded-2xl"
+            />
+          </div>
         </div>
       </motion.div>
     </div>
